@@ -1,11 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace poker
 {
 	public class Hand
 	{
 		public List<Card> Cards { get; set; }
+
+		public virtual string Description
+		{
+			get
+			{
+				return Cards == null ? "" : string.Join(" ", Cards.Select(c => c.Description).ToArray());
+			}
+		}
 
 		public Hand()
 		{
