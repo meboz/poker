@@ -1,0 +1,11 @@
+*.suo
+*.user
+_Resharper*
+*.Resharper
+*.ncrunchsolution
+
+src/*/bin/*
+src/*/obj/*
+
+output/*
+
