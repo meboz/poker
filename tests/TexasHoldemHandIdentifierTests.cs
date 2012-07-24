@@ -20,21 +20,7 @@ namespace poker.tests
 
 
 		//these tests should move to individual hand identifier tests
-		[TestCase("TJQKASSSSS",TexasHoldemHand.RoyalFlush)]
-		[TestCase("56789SSSSS",TexasHoldemHand.StraightFlush)]
-		[TestCase("44447SSSSS",TexasHoldemHand.FourOfAKind)]
-		[TestCase("4TTTTDDDDD",TexasHoldemHand.FourOfAKind)]
-		[TestCase("44TTTDDDDD",TexasHoldemHand.FullHouse)]
-		[TestCase("444TTDDDDD",TexasHoldemHand.FullHouse)]
-		[TestCase("445TTDDDDD",TexasHoldemHand.Flush)]
-		[Ignore]
-		public void can_identify_hands(string handDescription, TexasHoldemHand texasHoldemHandType)
-		{
-			//TODO: move these theses to be individual hand identifier tests
-			var handIdentifier = new TexasHoldemHandIdentifier();
-			var handType = handIdentifier.Identify(handDescription);
-			handType.ShouldEqual(texasHoldemHandType);
-		}
+		
 
 		[Test]
 		[ExpectedArgumentNullException("HandIdentifiers")]

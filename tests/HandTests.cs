@@ -55,13 +55,16 @@ namespace poker.tests
 			hand.ValuesThenSuitsDescription.ShouldEqual("35TACSCD");
 		}
 
+
 		[Test]
 		public void empty_hand_should_have_empty_description()
 		{
 			var hand = new Hand();
 			hand.Description.ShouldEqual("");
+			hand.ValuesThenSuitsDescription.ShouldEqual("");
 			hand.Cards = null;
 			hand.Description.ShouldEqual("");
+			hand.ValuesThenSuitsDescription.ShouldEqual("");
 		}
 	}
 }
