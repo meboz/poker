@@ -5,9 +5,10 @@ namespace poker
 {
 	public class TexasHoldemHandIdentifier
 	{
+		public virtual List<ITexasHoldemHandIdentifier> HandIndentifiers { get; set; }
+
 		public virtual TexasHoldemHand Identify(string handDescription)
 		{
-			var identifiedHand = TexasHoldemHand.HighCard;
 
 			if(handDescription == null)
 				throw new ArgumentNullException("handDescription");
@@ -15,21 +16,22 @@ namespace poker
 			if(handDescription.Length != 10)
 				throw new Exception(string.Format("Not a valid texas holdem hand. Expected 5 cards but got [{0}]", handDescription));
 
-			var handPredicates = new Dictionary<TexasHoldemHand, ITexasHoldemHandInspector>()
-			                	{
-									{TexasHoldemHand.RoyalFlush, new RoyalFlushInspector()},
-									{TexasHoldemHand.StraightFlush, new StraightFlushInspector()},
-									{TexasHoldemHand.FourOfAKind, new FourOfAKindInspector()},
-									{TexasHoldemHand.FullHouse, new FullHouseInspector()},
-									{TexasHoldemHand.Flush, new FlushInspector()},
+			if (HandIndentifiers == null)
+				throw new ArgumentNullException("HandIdentifiers");
 
-			                	};
+			var identifiedHand = IdentifyHand(handDescription);
+			return identifiedHand;
+		}
 
-			foreach (var predicate in handPredicates)
+		public virtual TexasHoldemHand IdentifyHand(string handDescription)
+		{
+			var identifiedHand = TexasHoldemHand.HighCard;
+
+			foreach (var identifier in HandIndentifiers)
 			{
-				if(predicate.Value.Inspect(handDescription))
+				if (identifier.IsHandOfThisType(handDescription))
 				{
-					identifiedHand = predicate.Key;
+					identifiedHand = identifier.IdentifiedHand;
 					break;
 				}
 			}
