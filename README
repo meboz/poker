@@ -1,0 +1,15 @@
+Howdy,
+
+This was a good kata. I didnt quite get to the finish.
+
+TODO:
+
+Implement inspectors for Straight, ThreeOfAKind, TwoPair, OnePair
+
+Implement an end to end test to create a hand and then identify what it is
+
+Implement ranking to be able to rank 2 hands
+
+Sort out the nodejs build, not doing what I wanted it to do (experimental)
+
+Im pretty happy with where it ended up.
