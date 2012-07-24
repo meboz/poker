@@ -3,18 +3,36 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Rhino.Mocks;
 using SharpArch.Testing.NUnit;
+using System.Linq;
 
 namespace poker.tests
 {
 	[TestFixture]
 	public class TexasHoldemHandIdentifierTests
 	{
+		[Test]
+		public void should_have_a_default_list_of_identifiers_in_rank_order()
+		{
+			var identifier = new TexasHoldemHandIdentifier();
 
+			identifier.HandIndentifiers.Count.ShouldEqual(9);
+			identifier.HandIndentifiers.ElementAt(0).ShouldBeOfType(typeof(TexasHoldemRoyalFlushIdentifier));
+			identifier.HandIndentifiers.ElementAt(1).ShouldBeOfType(typeof(TexasHoldemStraightFlushIdentifier));
+			identifier.HandIndentifiers.ElementAt(2).ShouldBeOfType(typeof(TexasHoldemFourOfAKindIdentifier));
+			identifier.HandIndentifiers.ElementAt(3).ShouldBeOfType(typeof(TexasHoldemFullHouseIdentifier));
+			identifier.HandIndentifiers.ElementAt(4).ShouldBeOfType(typeof(TexasHoldemFlushIdentifier));
+			identifier.HandIndentifiers.ElementAt(5).ShouldBeOfType(typeof(TexasHoldemStraightIdentifier));
+			identifier.HandIndentifiers.ElementAt(6).ShouldBeOfType(typeof(TexasHoldemThreeOfAKindIdentifier));
+			identifier.HandIndentifiers.ElementAt(7).ShouldBeOfType(typeof(TexasHoldemTwoPairIdentifier));
+			identifier.HandIndentifiers.ElementAt(8).ShouldBeOfType(typeof(TexasHoldemOnePairIdentifier));
+
+		}
 		[Test]
 		[ExpectedArgumentNullException("HandIdentifiers")]
 		public void should_require_hand_identifier_to_be_non_null_to_do_work()
 		{
 			var handIdentifier = new TexasHoldemHandIdentifier();
+			handIdentifier.HandIndentifiers = null;
 			handIdentifier.Identify("33344SSSSS");
 		}
 

@@ -7,6 +7,21 @@ namespace poker
 	{
 		public virtual List<ITexasHoldemHandIdentifier> HandIndentifiers { get; set; }
 
+		public TexasHoldemHandIdentifier()
+		{
+			HandIndentifiers = new List<ITexasHoldemHandIdentifier>()
+			                   	{
+			                   		new TexasHoldemRoyalFlushIdentifier(),
+			                   		new TexasHoldemStraightFlushIdentifier(),
+			                   		new TexasHoldemFourOfAKindIdentifier(),
+			                   		new TexasHoldemFullHouseIdentifier(),
+			                   		new TexasHoldemFlushIdentifier(),
+			                   		new TexasHoldemStraightIdentifier(),
+			                   		new TexasHoldemThreeOfAKindIdentifier(),
+			                   		new TexasHoldemTwoPairIdentifier(),
+			                   		new TexasHoldemOnePairIdentifier(),
+			                   	};
+		}
 		public virtual TexasHoldemHand Identify(string handDescription)
 		{
 
@@ -19,12 +34,6 @@ namespace poker
 			if (HandIndentifiers == null)
 				throw new ArgumentNullException("HandIdentifiers");
 
-			var identifiedHand = IdentifyHand(handDescription);
-			return identifiedHand;
-		}
-
-		public virtual TexasHoldemHand IdentifyHand(string handDescription)
-		{
 			var identifiedHand = TexasHoldemHand.HighCard;
 
 			foreach (var identifier in HandIndentifiers)
@@ -35,7 +44,6 @@ namespace poker
 					break;
 				}
 			}
-
 			return identifiedHand;
 		}
 	}

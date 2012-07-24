@@ -11,17 +11,7 @@ namespace poker
 		public SimpleTexasHoldemGame()
 		{
 			_deckOfCards = new DeckOfCards();
-			_identifier = new TexasHoldemHandIdentifier
-			              	{
-			              		HandIndentifiers = new List<ITexasHoldemHandIdentifier>()
-			              		                   	{
-			              		                   		new TexasHoldemRoyalFlushIdentifier(),
-			              		                   		new TexasHoldemStraightFlushIdentifier(),
-			              		                   		new TexasHoldemFourOfAKindIdentifier(),
-			              		                   		new TexasHoldemFullHouseIdentifier(),
-			              		                   		new TexasHoldemFlushIdentifier(),
-			              		                   	}
-			              	};
+			_identifier = new TexasHoldemHandIdentifier();
 		}
 
 		public virtual Hand DealHand()

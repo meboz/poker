@@ -19,6 +19,8 @@ namespace poker.tests
 				var message = string.Format("Hand {0}: {1} - {2} ({3})", i, hand.Description, game.IdentifyHand(hand),hand.ValuesThenSuitsDescription);
 				Console.WriteLine(message);
 			}
+
+			Assert.Fail("Show the output in the resharper console");
 		}
 
 		[Test]

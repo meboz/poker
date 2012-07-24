@@ -55,6 +55,9 @@
     <Compile Include="Suit.cs" />
     <Compile Include="TexasHoldemHand.cs" />
     <Compile Include="TexasHoldemHandIdentifier.cs" />
+    <Compile Include="TexasHoldemStraightIdentifier.cs" />
+    <Compile Include="TexasHoldemThreeOfAKindIdentifier.cs" />
+    <Compile Include="TexasHoldemTwoPairIdentifier.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
