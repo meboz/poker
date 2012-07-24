@@ -10,7 +10,7 @@ namespace poker
 		public int Value { get; set; }
 		public Card(Suit suit, int value)
 		{
-			if(value < 1 || value > 13)
+			if(value < 2 || value > 14)
 				throw new ArgumentOutOfRangeException("value should be between 0 and 13");
 
 			Suit = suit;
@@ -23,13 +23,14 @@ namespace poker
 			{
 				var royalMap = new Dictionary<int, string>()
 				               	{
-									{1, "A"},
+									{10,"T"},
 									{11,"J"},
 									{12,"Q"},
 									{13,"K"},
+									{14, "A"}
 				               	};
 
-				if(Value == 1 || Value > 10)
+				if(Value > 9)
 					return royalMap[Value] + Suit.ToString()[0];
 
 				return Value.ToString() + Suit.ToString()[0];

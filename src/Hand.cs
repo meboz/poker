@@ -16,6 +16,19 @@ namespace poker
 			}
 		}
 
+		public virtual string ValuesThenSuitsDescription
+		{
+			get
+			{
+				if (Cards == null)
+					return "";
+
+				var orderedCards = Cards.OrderBy(c => c.Value);
+
+				return string.Join("", orderedCards.Select(c => c.Description[0]).ToArray()) + string.Join("", orderedCards.Select(c => c.Description[1]).ToArray());
+			}
+		}
+
 		public Hand()
 		{
 			Cards = new List<Card>();

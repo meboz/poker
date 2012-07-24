@@ -15,7 +15,7 @@ namespace poker
 
 			foreach (var value in Enum.GetValues(typeof(Suit)))
 			{
-				for (var i = 1; i < 14; i++)
+				for (var i = 2; i <= 14; i++)
 					Cards.Add(new Card((Suit)value, i));
 			}
 			

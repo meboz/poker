@@ -4,7 +4,6 @@ using SharpArch.Testing.NUnit;
 
 namespace poker.tests
 {
-	
 	[TestFixture]
 	public class HandTests
 	{
@@ -19,7 +18,7 @@ namespace poker.tests
 		public void should_add_card_to_hand()
 		{
 			var hand = new Hand();
-			hand.AddCard(new Card(Suit.Spades, 1));
+			hand.AddCard(new Card(Suit.Spades, 14));
 
 			hand.Cards.Count.ShouldEqual(1);
 		}
@@ -30,7 +29,7 @@ namespace poker.tests
 			var hand = new Hand();
 			hand.Cards = null;
 
-			hand.AddCard(new Card(Suit.Spades, 1));
+			hand.AddCard(new Card(Suit.Spades, 14));
 
 			hand.Cards.Count.ShouldEqual(1);
 		}
@@ -44,14 +43,16 @@ namespace poker.tests
 		}
 
 		[Test]
-		public void should_have_a_description()
+		public void should_have_a_description_in_value_order()
 		{
 			var hand = new Hand();
 			hand.AddCard(new Card(Suit.Clubs, 3));
 			hand.AddCard(new Card(Suit.Spades, 5));
-			hand.AddCard(new Card(Suit.Diamonds, 1));
+			hand.AddCard(new Card(Suit.Diamonds, 14));
+			hand.AddCard(new Card(Suit.Clubs, 10));
 
-			hand.Description.ShouldEqual("3C 5S AD");
+			hand.Description.ShouldEqual("3C 5S AD TC");
+			hand.ValuesThenSuitsDescription.ShouldEqual("35TACSCD");
 		}
 
 		[Test]
