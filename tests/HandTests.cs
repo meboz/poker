@@ -42,6 +42,5 @@ namespace poker.tests
 			hand.AddCard(null);
 		}
 
-
 	}
 }

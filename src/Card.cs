@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using poker.tests;
 
 namespace poker
@@ -16,7 +17,24 @@ namespace poker
 			Value = value;
 		}
 
+		public virtual string Description
+		{
+			get
+			{
+				var royalMap = new Dictionary<int, string>()
+				               	{
+									{1, "A"},
+									{11,"J"},
+									{12,"Q"},
+									{13,"K"},
+				               	};
 
+				if(Value == 1 || Value > 10)
+					return royalMap[Value] + Suit.ToString()[0];
+
+				return Value.ToString() + Suit.ToString()[0];
+			}
+		}
 		public bool Equals(Card other)
 		{
 			if (ReferenceEquals(null, other)) return false;

@@ -53,5 +53,17 @@ namespace poker.tests
 			card1.ShouldNotEqual(card2);
 		}
 
+		[TestCase(Suit.Hearts,2, "2H")]
+		[TestCase(Suit.Spades,5, "5S")]
+		[TestCase(Suit.Diamonds,10, "10D")]
+		[TestCase(Suit.Clubs,6, "6C")]
+		[TestCase(Suit.Clubs,11, "JC")]
+		[TestCase(Suit.Clubs,12, "QC")]
+		[TestCase(Suit.Clubs,1, "AC")]
+		public void card_has_a_readable_description(Suit suit, int value, string expectedDescription)
+		{
+			var card = new Card(suit, value);
+			card.Description.ShouldEqual(expectedDescription);
+		}
 	}
 }
