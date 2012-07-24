@@ -21,21 +21,28 @@ namespace poker
 			
 		}
 
-		public Hand DealHand(int i)
+		public virtual Hand DealHand(int numberOfCardsToDeal)
 		{
 			var hand = new Hand();
 			
-			if(Cards.Count < i)
+			if(Cards.Count < numberOfCardsToDeal)
 				throw new NeedToRefillTheShoeException();
 
-			for (var j = 0; j < i; j++)
+			for (var i = 0; i < numberOfCardsToDeal; i++)
 			{
-				var cardIndexToPick = new Random().Next(0, Cards.Count);
-				hand.AddCard(Cards.ElementAt(cardIndexToPick));
-				Cards.RemoveAt(cardIndexToPick);
+				var randomCard = DealCard();
+				hand.AddCard(randomCard);
 			}
 
 			return hand;
+		}
+
+		public virtual Card DealCard()
+		{
+			var randomCardNumberToPick = new Random().Next(0, Cards.Count);
+			var card = Cards.ElementAt(randomCardNumberToPick);
+			Cards.RemoveAt(randomCardNumberToPick);
+			return card;
 		}
 	}
 }

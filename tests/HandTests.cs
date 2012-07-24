@@ -32,7 +32,6 @@ namespace poker.tests
 			hand.AddCard(new Card(Suit.Spades, 1));
 
 			hand.Cards.Count.ShouldEqual(1);
-
 		}
 
 		[Test]
@@ -42,5 +41,7 @@ namespace poker.tests
 			var hand = new Hand();
 			hand.AddCard(null);
 		}
+
+
 	}
 }

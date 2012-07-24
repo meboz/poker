@@ -1,5 +1,6 @@
 using System.Linq;
 using NUnit.Framework;
+using Rhino.Mocks;
 using SharpArch.Testing.NUnit;
 
 namespace poker.tests
@@ -50,12 +51,26 @@ namespace poker.tests
 		}
 
 		[Test]
-		public void range_of_values_in_hand_should_be_greater_than_number_of_cards()
+		public void two_dealt_cards_should_never_be_the_same()
 		{
 			var deck = new DeckOfCards();
-			var hand = deck.DealHand(5);
+			var card1 = deck.DealCard();
 
-			
+			deck.Cards.Count.ShouldEqual(51);
+
+			var card2 = deck.DealCard();
+
+			card1.ShouldNotEqual(card2);
+		}
+
+		[Test]
+		public void should_deal_randomly_when_dealing_hand()
+		{
+			var deckOfCards = MockRepository.GeneratePartialMock<DeckOfCards>();
+
+			var hand = deckOfCards.DealHand(3);
+
+			deckOfCards.AssertWasCalled(d => d.DealCard(),opts => opts.Repeat.Times(3));
 		}
 	}
 }
