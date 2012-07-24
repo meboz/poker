@@ -13,7 +13,8 @@ namespace poker.tests
 		[TestCase("4TTTTDDDDD",TexasHoldemHand.FourOfAKind)]
 		[TestCase("44TTTDDDDD",TexasHoldemHand.FullHouse)]
 		[TestCase("444TTDDDDD",TexasHoldemHand.FullHouse)]
-		public void can_test_for_royal_flush(string handDescription, TexasHoldemHand texasHoldemHandType)
+		[TestCase("445TTDDDDD",TexasHoldemHand.Flush)]
+		public void can_identify_hands(string handDescription, TexasHoldemHand texasHoldemHandType)
 		{
 			var handIdentifier = new TexasHoldemHandIdentifier();
 			var handType = handIdentifier.Identify(handDescription);

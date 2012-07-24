@@ -20,8 +20,8 @@ namespace poker
 									{TexasHoldemHand.RoyalFlush, new RoyalFlushInspector()},
 									{TexasHoldemHand.StraightFlush, new StraightFlushInspector()},
 									{TexasHoldemHand.FourOfAKind, new FourOfAKindInspector()},
-									
 									{TexasHoldemHand.FullHouse, new FullHouseInspector()},
+									{TexasHoldemHand.Flush, new FlushInspector()},
 
 			                	};
 
@@ -32,7 +32,6 @@ namespace poker
 					identifiedHand = predicate.Key;
 					break;
 				}
-
 			}
 
 			return identifiedHand;
