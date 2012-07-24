@@ -5,11 +5,6 @@ using System.Linq;
 
 namespace poker
 {
-	public class NeedToRefillTheShowException : Exception
-	{
-		
-	}
-
 	public class DeckOfCards
 	{
 		public List<Card> Cards { get; set; }
@@ -26,21 +21,21 @@ namespace poker
 			
 		}
 
-		public Card[] DealHand(int i)
+		public Hand DealHand(int i)
 		{
-			var hand = new List<Card>();
+			var hand = new Hand();
+			
 			if(Cards.Count < i)
-				throw new NeedToRefillTheShowException();
-
+				throw new NeedToRefillTheShoeException();
 
 			for (var j = 0; j < i; j++)
 			{
 				var cardIndexToPick = new Random().Next(0, Cards.Count);
-				hand.Add(Cards.ElementAt(cardIndexToPick));
+				hand.AddCard(Cards.ElementAt(cardIndexToPick));
 				Cards.RemoveAt(cardIndexToPick);
 			}
 
-			return hand.ToArray();
+			return hand;
 		}
 	}
 }

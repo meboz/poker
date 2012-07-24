@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="CardTests.cs" />
     <Compile Include="DeckTests.cs" />
+    <Compile Include="HandTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

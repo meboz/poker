@@ -20,7 +20,7 @@ namespace poker.tests
 		}
 
 		[Test]
-		[ExpectedException(typeof(NeedToRefillTheShowException))]
+		[ExpectedException(typeof(NeedToRefillTheShoeException))]
 		public void should_throw_if_deck_doesnt_have_enough_cards()
 		{
 			var deck = new DeckOfCards();
@@ -33,7 +33,7 @@ namespace poker.tests
 			var deck = new DeckOfCards();
 			var hand = deck.DealHand(5);
 
-			hand.Length.ShouldEqual(5);
+			hand.Cards.Count.ShouldEqual(5);
 		}
 
 		[Test]
@@ -49,5 +49,13 @@ namespace poker.tests
 			deck.Cards.Count.ShouldEqual(42);
 		}
 
+		[Test]
+		public void range_of_values_in_hand_should_be_greater_than_number_of_cards()
+		{
+			var deck = new DeckOfCards();
+			var hand = deck.DealHand(5);
+
+			
+		}
 	}
 }
