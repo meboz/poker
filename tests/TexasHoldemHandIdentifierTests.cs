@@ -9,18 +9,6 @@ namespace poker.tests
 	[TestFixture]
 	public class TexasHoldemHandIdentifierTests
 	{
-		//var handPredicates = new Dictionary<TexasHoldemHand, ITexasHoldemHandIdentifier>()
-		//                    {
-		//                        {TexasHoldemHand.RoyalFlush, new RoyalFlushInspector()},
-		//                        {TexasHoldemHand.StraightFlush, new TexasHoldemStraightFlushIdentifier()},
-		//                        {TexasHoldemHand.FourOfAKind, new FourOfAKindInspector()},
-		//                        {TexasHoldemHand.FullHouse, new FullHouseInspector()},
-		//                        {TexasHoldemHand.Flush, new FlushInspector()},
-		//                    };
-
-
-		//these tests should move to individual hand identifier tests
-		
 
 		[Test]
 		[ExpectedArgumentNullException("HandIdentifiers")]

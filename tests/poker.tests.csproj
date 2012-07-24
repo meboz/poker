@@ -55,6 +55,7 @@
     <Compile Include="HandTests.cs" />
     <Compile Include="IndividualHandIdentifierTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleTexasHoldemGamesTests.cs" />
     <Compile Include="TexasHoldemHandIdentifierTests.cs" />
   </ItemGroup>
   <ItemGroup>
