@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using poker.tests;
 
 namespace poker
 {

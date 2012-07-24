@@ -1,4 +1,4 @@
-namespace poker.tests
+namespace poker
 {
 	public enum Suit
 	{
