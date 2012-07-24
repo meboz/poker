@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using SharpArch.Testing.NUnit;
@@ -19,12 +18,40 @@ namespace poker.tests
 
 		[TestCase(-1, ExpectedException = typeof(ArgumentOutOfRangeException))]
 		[TestCase(14, ExpectedException = typeof(ArgumentOutOfRangeException))]
+		[TestCase(0, ExpectedException = typeof(ArgumentOutOfRangeException))]
 		[TestCase(1)]
-		[TestCase(0)]
 		[TestCase(13)]
-		public void a_cards_value_should_be_within_0_and_13(int inputValue)
+		public void a_cards_value_should_be_within_1_and_13(int inputValue)
 		{
 			var card = new Card(Suit.Spades, inputValue);
 		}
+
+		[Test]
+		public void cards_are_the_same_if_their_value_and_suit_is_the_same()
+		{
+			var card1 = new Card(Suit.Spades, 1);
+			var card2 = new Card(Suit.Spades, 1);
+
+			card1.ShouldEqual(card2);
+		}
+
+		[Test]
+		public void cards_are_different_if_their_suit_is_different()
+		{
+			var card1 = new Card(Suit.Spades, 1);
+			var card2 = new Card(Suit.Hearts, 1);
+
+			card1.ShouldNotEqual(card2);
+		}
+
+		[Test]
+		public void cards_are_different_if_their_value_is_different()
+		{
+			var card1 = new Card(Suit.Spades, 1);
+			var card2 = new Card(Suit.Spades, 2);
+
+			card1.ShouldNotEqual(card2);
+		}
+
 	}
 }
