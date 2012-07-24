@@ -3,9 +3,9 @@
 _Resharper*
 *.Resharper
 *.ncrunchsolution
-
-src/*/bin/*
-src/*/obj/*
-
+_NCrunch_*
+src/bin/*
+src/obj/*
+src/*.ncrunchproject
 output/*
 
