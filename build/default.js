@@ -9,26 +9,21 @@ var config = {
 	buildOutputDir: projectDir + '\\output\\'
 };
 
-
-desc('This is the default task')
-task('default', ['clean', 'compile'], function (params) {
-	console.log('This is the default task');
-	console.log(os.hostname);
-});
-
-desc('This is a test task for investigation')
+desc('This is a test task')
 task('test', [], function (params) {
 	
+	var cmd = 'C:\\projects\\poker\\tools\\nunit\\nunit-console.exe C:\\projects\\poker\\output\\poker.tests.dll';
+	fn.exec(cmd);
 });
 
 desc('Cleans build artifacts')
 task('clean', [], function (params) {
-	console.log('clean');
-	fn.rmDir(config.buildOutputDir);
+	fn.rmDir('c:\\projects\\poker\\output\\');
 });
 
 desc('Compiles the project')
-task('compile', ['clean','update'], function (params) {
+task('compile', [], function (params) {
+	jake.Task['clean'].invoke();
 	var cmd = 'C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\MSBuild c:\\projects\\poker\\poker.sln /property:OutDir=' + config.buildOutputDir;
 	fn.exec(cmd);
 });
