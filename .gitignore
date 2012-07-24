@@ -4,8 +4,13 @@ _Resharper*
 *.Resharper
 *.ncrunchsolution
 _NCrunch_*
+
 src/bin/*
 src/obj/*
+tests/bin/*
+tests/obj/*
+
 src/*.ncrunchproject
+tests/*.ncrunchproject
 output/*
 
