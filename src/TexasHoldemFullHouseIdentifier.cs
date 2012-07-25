@@ -10,6 +10,7 @@ namespace poker
 			return groups.Count() == 2;
 		}
 
+
 		public TexasHoldemHand IdentifiedHand
 		{
 			get { return TexasHoldemHand.FullHouse; }

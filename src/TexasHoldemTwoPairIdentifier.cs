@@ -30,6 +30,11 @@ namespace poker
 			return valueGroups.Count() == 4 && suitGroups.Count() > 1 && valueGroups.Where(g => g.Count() == 2).Count() == 1;
 		}
 
+		public bool IsHandOfThisType(Hand hand)
+		{
+			throw new System.NotImplementedException();
+		}
+
 		public TexasHoldemHand IdentifiedHand
 		{
 			get { return TexasHoldemHand.OnePair; }

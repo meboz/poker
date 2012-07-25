@@ -44,5 +44,13 @@ namespace poker
 
 			Cards.Add(card);
 		}
+
+		public virtual bool HasAllTheSameSuit
+		{
+			get
+			{
+				return Cards.GroupBy(c => c.Suit).Count() == 1;						
+			}
+		}
 	}
 }

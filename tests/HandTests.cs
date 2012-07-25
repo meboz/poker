@@ -8,6 +8,21 @@ namespace poker.tests
 	public class HandTests
 	{
 		[Test]
+		public void can_inspect_if_hand_has_all_the_same_suit()
+		{
+			var hand = new Hand();
+
+			hand.Cards.Add(new Card(Suit.Spades, 10));
+			hand.Cards.Add(new Card(Suit.Spades, 11));
+
+			hand.HasAllTheSameSuit.ShouldBeTrue();
+
+			hand.Cards.Add(new Card(Suit.Hearts, 10));
+
+			hand.HasAllTheSameSuit.ShouldBeFalse();
+		}
+
+		[Test]
 		public void new_hand_should_have_empty_set_of_cards()
 		{
 			var hand = new Hand();

@@ -14,6 +14,7 @@ namespace poker
 			return new Regex("(TJQKA)(DDDDD|SSSSS|CCCCC|HHHHH)").IsMatch(hand);
 		}
 
+
 		public TexasHoldemHand IdentifiedHand
 		{
 			get { return TexasHoldemHand.RoyalFlush; }
