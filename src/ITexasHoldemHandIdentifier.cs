@@ -2,7 +2,7 @@ namespace poker
 {
 	public interface ITexasHoldemHandIdentifier
 	{
-		bool IsHandOfThisType(string hand);
+		bool IsHandOfThisType(Hand hand);
 		TexasHoldemHand IdentifiedHand { get; }
 	}
 }

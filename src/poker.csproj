@@ -50,6 +50,7 @@
     <Compile Include="ITexasHoldemHandIdentifier.cs" />
     <Compile Include="NeedToRefillTheShoeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TexasHoldemOnePairIdentifier.cs" />
     <Compile Include="TexasHoldemRoyalFlushIdentifier.cs" />
     <Compile Include="TexasHoldemStraightFlushIdentifier.cs" />
     <Compile Include="Suit.cs" />

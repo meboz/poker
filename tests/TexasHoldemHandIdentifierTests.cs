@@ -10,6 +10,18 @@ namespace poker.tests
 	[TestFixture]
 	public class TexasHoldemHandIdentifierTests
 	{
+		private Hand _validHand;
+
+		[SetUp]
+		public void setup()
+		{
+			_validHand = new Hand();
+			_validHand.AddCard(new Card(Suit.Hearts, 10));
+			_validHand.AddCard(new Card(Suit.Hearts, 6));
+			_validHand.AddCard(new Card(Suit.Diamonds, 3));
+			_validHand.AddCard(new Card(Suit.Spades, 14));
+			_validHand.AddCard(new Card(Suit.Clubs, 2));
+		}
 		[Test]
 		public void should_have_a_default_list_of_identifiers_in_rank_order()
 		{
@@ -33,7 +45,7 @@ namespace poker.tests
 		{
 			var handIdentifier = new TexasHoldemHandIdentifier();
 			handIdentifier.HandIndentifiers = null;
-			handIdentifier.Identify("33344SSSSS");
+			handIdentifier.Identify(new Hand());
 		}
 
 		[Test]
@@ -42,18 +54,17 @@ namespace poker.tests
 			var handIdentifier = new TexasHoldemHandIdentifier();
 			handIdentifier.HandIndentifiers = new List<ITexasHoldemHandIdentifier>();
 
-			var identifiedHand = handIdentifier.Identify("33344SSSSS");
+			var identifiedHand = handIdentifier.Identify(_validHand);
 			identifiedHand.ShouldEqual(TexasHoldemHand.HighCard);
 		}
 
 		[Test]
 		public void should_not_inspect_other_identifiers_if_identifier_is_matched()
 		{
-			var handDescription = "33344SSSSS";
 			var identifier1 = MockRepository.GenerateMock<ITexasHoldemHandIdentifier>();
 			var identifier2 = MockRepository.GenerateMock<ITexasHoldemHandIdentifier>();
 
-			identifier1.Expect(x => x.IsHandOfThisType(handDescription)).Return(true);
+			identifier1.Expect(x => x.IsHandOfThisType(_validHand)).Return(true);
 			identifier1.Expect(x => x.IdentifiedHand).Return(TexasHoldemHand.FourOfAKind);
 
 			var handIdentifier = new TexasHoldemHandIdentifier();
@@ -64,9 +75,9 @@ namespace poker.tests
 			                                  	};
 
 
-			var identifiedHand =  handIdentifier.Identify(handDescription);
+			var identifiedHand =  handIdentifier.Identify(_validHand);
 			
-			identifier2.AssertWasNotCalled(i => i.IsHandOfThisType(handDescription));
+			identifier2.AssertWasNotCalled(i => i.IsHandOfThisType(_validHand));
 			identifiedHand.ShouldEqual(TexasHoldemHand.FourOfAKind);
 
 		}
@@ -84,30 +95,28 @@ namespace poker.tests
 			                                  		identifier2
 			                                  	};
 
-			var handDescription = "33344SSSSS";
 
-			handIdentifier.Identify(handDescription);
+			handIdentifier.Identify(_validHand);
 
-			identifier1.AssertWasCalled(i => i.IsHandOfThisType(handDescription));
-			identifier2.AssertWasCalled(i => i.IsHandOfThisType(handDescription));
+			identifier1.AssertWasCalled(i => i.IsHandOfThisType(_validHand));
+			identifier2.AssertWasCalled(i => i.IsHandOfThisType(_validHand));
 		}
 
 		[Test]
-		[ExpectedArgumentNullException("handDescription")]
+		[ExpectedArgumentNullException("hand")]
 		public void should_not_attempt_to_idetify_a_null_hand()
 		{
 			var handIdentifier = new TexasHoldemHandIdentifier();
 			handIdentifier.Identify(null);
 		}
 
-		[TestCase("",ExpectedException = typeof(Exception))]
-		[TestCase("3 3 3",ExpectedException = typeof(Exception))]
-		[TestCase("3h4h5h",ExpectedException = typeof(Exception))]
-		[TestCase("3h 4h 5h",ExpectedException = typeof(Exception))]
+		[Test]
+		[ExpectedException(typeof(Exception),ExpectedMessage = "Not a valid texas holdem hand. Expected 5 cards but got 4")]
 		public void should_pass_the_identifier_a_valid_hand(string handDescription)
 		{
 			var handIdentifier = new TexasHoldemHandIdentifier();
-			handIdentifier.Identify(handDescription);
+			_validHand.Cards.RemoveAt(1);
+			handIdentifier.Identify(_validHand);
 		}
 	}
 }

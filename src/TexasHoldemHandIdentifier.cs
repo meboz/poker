@@ -22,23 +22,24 @@ namespace poker
 			                   		new TexasHoldemOnePairIdentifier(),
 			                   	};
 		}
-		public virtual TexasHoldemHand Identify(string handDescription)
+		public virtual TexasHoldemHand Identify(Hand hand)
 		{
 
-			if(handDescription == null)
-				throw new ArgumentNullException("handDescription");
-			
-			if(handDescription.Length != 10)
-				throw new Exception(string.Format("Not a valid texas holdem hand. Expected 5 cards but got [{0}]", handDescription));
+			if(hand == null)
+				throw new ArgumentNullException("hand");
 
 			if (HandIndentifiers == null)
 				throw new ArgumentNullException("HandIdentifiers");
 
+			if(hand.Cards.Count != 5)
+				throw new Exception(string.Format("Not a valid texas holdem hand. Expected 5 cards but got {0}", hand.Cards.Count));
+
+			
 			var identifiedHand = TexasHoldemHand.HighCard;
 
 			foreach (var identifier in HandIndentifiers)
 			{
-				if (identifier.IsHandOfThisType(handDescription))
+				if (identifier.IsHandOfThisType(hand))
 				{
 					identifiedHand = identifier.IdentifiedHand;
 					break;

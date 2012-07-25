@@ -4,14 +4,17 @@ namespace poker
 {
 	public class TexasHoldemFlushIdentifier : ITexasHoldemHandIdentifier
 	{
-		public bool IsHandOfThisType(string hand)
+
+		public bool IsHandOfThisType(Hand hand)
 		{
+			var description = hand.ValuesThenSuitsDescription;
+
 			//make sure its not a royal flush
 			var royalFlushIdentifier = new TexasHoldemRoyalFlushIdentifier();
 			if (royalFlushIdentifier.IsHandOfThisType(hand))
 				return false;
 
-			var groups = hand.Substring(5, 5).GroupBy(c => c);
+			var groups = description.Substring(5, 5).GroupBy(c => c);
 			return groups.Count() == 1;
 		}
 

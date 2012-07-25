@@ -4,12 +4,13 @@ namespace poker
 {
 	public class TexasHoldemStraightIdentifier : ITexasHoldemHandIdentifier
 	{
-		public bool IsHandOfThisType(string hand)
+		public bool IsHandOfThisType(Hand hand)
 		{
+			string hand1 = hand.ValuesThenSuitsDescription;
 			var straightFlushIdentifier = new TexasHoldemStraightFlushIdentifier();
 			if (straightFlushIdentifier.IsHandOfThisType(hand))
 				return false;
-			return new Regex("(A2345|23456|34567|45678|56789|6789T|789TJ|89TJQ|9TJQK)").IsMatch(hand);
+			return new Regex("(2345A|23456|34567|45678|56789|6789T|789TJ|89TJQ|9TJQK)").IsMatch(hand1);
 		}
 
 		public TexasHoldemHand IdentifiedHand

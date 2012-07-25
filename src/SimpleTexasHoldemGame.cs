@@ -31,7 +31,7 @@ namespace poker
 
 		public virtual TexasHoldemHand IdentifyHand(Hand hand)
 		{
-			return _identifier.Identify(hand.ValuesThenSuitsDescription);
+			return _identifier.Identify(hand);
 		}
 	}
 }

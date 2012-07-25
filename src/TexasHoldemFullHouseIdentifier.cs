@@ -4,9 +4,10 @@ namespace poker
 {
 	public class TexasHoldemFullHouseIdentifier : ITexasHoldemHandIdentifier
 	{
-		public bool IsHandOfThisType(string hand)
+		public bool IsHandOfThisType(Hand hand)
 		{
-			var groups = hand.Substring(0, 5).GroupBy(c => c);
+			var desc = hand.ValuesThenSuitsDescription;
+			var groups = desc.Substring(0, 5).GroupBy(c => c);
 			return groups.Count() == 2;
 		}
 
