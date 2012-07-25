@@ -7,6 +7,10 @@ namespace poker
 		FourOfAKind,
 		FullHouse,
 		Flush,
+		Straight,
+		ThreeOfAKind,
+		TwoPair,
+		OnePair,
 		HighCard
 	}
 }

@@ -51,6 +51,7 @@ namespace poker.tests
 			var card2 = new Card(Suit.Spades, 3);
 
 			card1.ShouldNotEqual(card2);
+			card1.GetHashCode().ShouldNotEqual(card2.GetHashCode());
 		}
 
 		[TestCase(Suit.Hearts,2, "2H")]
@@ -65,5 +66,6 @@ namespace poker.tests
 			var card = new Card(suit, value);
 			card.Description.ShouldEqual(expectedDescription);
 		}
+
 	}
 }

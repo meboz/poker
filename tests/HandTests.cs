@@ -8,6 +8,60 @@ namespace poker.tests
 	public class HandTests
 	{
 		[Test]
+		public void can_inspect_hand_for_triples()
+		{
+			var hand = new Hand();
+			hand.HasTriples.ShouldBeFalse();
+
+			hand.Cards.Add(new Card(Suit.Spades, 10));
+			hand.Cards.Add(new Card(Suit.Diamonds, 10));
+
+			hand.HasTriples.ShouldBeFalse();
+
+			hand.Cards.Add(new Card(Suit.Hearts, 10));
+
+			hand.HasTriples.ShouldBeTrue();
+			hand.Cards.Add(new Card(Suit.Clubs, 10));
+
+			hand.HasTriples.ShouldBeFalse();
+
+		}
+		[Test]
+		public void can_inspect_the_number_of_pairs()
+		{
+			var hand = new Hand();
+
+			hand.Cards.Add(new Card(Suit.Spades, 10));
+			hand.Cards.Add(new Card(Suit.Diamonds, 10));
+
+			hand.NumberOfPairs.ShouldEqual(1);
+
+			hand.Cards.Add(new Card(Suit.Diamonds, 3));
+
+			hand.NumberOfPairs.ShouldEqual(1);
+
+			hand.Cards.Add(new Card(Suit.Hearts, 3));
+
+			hand.NumberOfPairs.ShouldEqual(2);
+
+
+		}
+		[Test]
+		public void can_inspect_if_hand_has_all_the_same_suit()
+		{
+			var hand = new Hand();
+
+			hand.Cards.Add(new Card(Suit.Spades, 10));
+			hand.Cards.Add(new Card(Suit.Spades, 11));
+
+			hand.HasAllTheSameSuit.ShouldBeTrue();
+
+			hand.Cards.Add(new Card(Suit.Hearts, 10));
+
+			hand.HasAllTheSameSuit.ShouldBeFalse();
+		}
+
+		[Test]
 		public void new_hand_should_have_empty_set_of_cards()
 		{
 			var hand = new Hand();
@@ -55,13 +109,16 @@ namespace poker.tests
 			hand.ValuesThenSuitsDescription.ShouldEqual("35TACSCD");
 		}
 
+
 		[Test]
 		public void empty_hand_should_have_empty_description()
 		{
 			var hand = new Hand();
 			hand.Description.ShouldEqual("");
+			hand.ValuesThenSuitsDescription.ShouldEqual("");
 			hand.Cards = null;
 			hand.Description.ShouldEqual("");
+			hand.ValuesThenSuitsDescription.ShouldEqual("");
 		}
 	}
 }

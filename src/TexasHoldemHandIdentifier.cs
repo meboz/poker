@@ -5,35 +5,46 @@ namespace poker
 {
 	public class TexasHoldemHandIdentifier
 	{
-		public virtual TexasHoldemHand Identify(string handDescription)
+		public virtual List<ITexasHoldemHandIdentifier> HandIndentifiers { get; set; }
+
+		public TexasHoldemHandIdentifier()
 		{
+			HandIndentifiers = new List<ITexasHoldemHandIdentifier>()
+			                   	{
+			                   		new TexasHoldemRoyalFlushIdentifier(),
+			                   		new TexasHoldemStraightFlushIdentifier(),
+			                   		new TexasHoldemFourOfAKindIdentifier(),
+			                   		new TexasHoldemFullHouseIdentifier(),
+			                   		new TexasHoldemFlushIdentifier(),
+			                   		new TexasHoldemStraightIdentifier(),
+			                   		new TexasHoldemThreeOfAKindIdentifier(),
+			                   		new TexasHoldemTwoPairIdentifier(),
+			                   		new TexasHoldemOnePairIdentifier(),
+			                   	};
+		}
+		public virtual TexasHoldemHand Identify(Hand hand)
+		{
+
+			if(hand == null)
+				throw new ArgumentNullException("hand");
+
+			if (HandIndentifiers == null)
+				throw new ArgumentNullException("HandIdentifiers");
+
+			if(hand.Cards.Count != 5)
+				throw new Exception(string.Format("Not a valid texas holdem hand. Expected 5 cards but got {0}", hand.Cards.Count));
+
+			
 			var identifiedHand = TexasHoldemHand.HighCard;
 
-			if(handDescription == null)
-				throw new ArgumentNullException("handDescription");
-			
-			if(handDescription.Length != 10)
-				throw new Exception(string.Format("Not a valid texas holdem hand. Expected 5 cards but got [{0}]", handDescription));
-
-			var handPredicates = new Dictionary<TexasHoldemHand, ITexasHoldemHandInspector>()
-			                	{
-									{TexasHoldemHand.RoyalFlush, new RoyalFlushInspector()},
-									{TexasHoldemHand.StraightFlush, new StraightFlushInspector()},
-									{TexasHoldemHand.FourOfAKind, new FourOfAKindInspector()},
-									{TexasHoldemHand.FullHouse, new FullHouseInspector()},
-									{TexasHoldemHand.Flush, new FlushInspector()},
-
-			                	};
-
-			foreach (var predicate in handPredicates)
+			foreach (var identifier in HandIndentifiers)
 			{
-				if(predicate.Value.Inspect(handDescription))
+				if (identifier.IsHandOfThisType(hand))
 				{
-					identifiedHand = predicate.Key;
+					identifiedHand = identifier.IdentifiedHand;
 					break;
 				}
 			}
-
 			return identifiedHand;
 		}
 	}
