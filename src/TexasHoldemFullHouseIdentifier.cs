@@ -6,9 +6,7 @@ namespace poker
 	{
 		public bool IsHandOfThisType(Hand hand)
 		{
-			var desc = hand.ValuesThenSuitsDescription;
-			var groups = desc.Substring(0, 5).GroupBy(c => c);
-			return groups.Count() == 2;
+			return hand.NumberOfPairs == 1 && hand.HasTriples;
 		}
 
 

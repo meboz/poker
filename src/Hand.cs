@@ -52,5 +52,16 @@ namespace poker
 				return Cards.GroupBy(c => c.Suit).Count() == 1;						
 			}
 		}
+
+		public virtual int NumberOfPairs
+		{
+			get { return Cards.GroupBy(c => c.Value).Count(g => g.Count() == 2); }
+		}
+
+		public virtual bool HasTriples
+		{
+			//one group of 3 by value
+			get { return Cards.GroupBy(c => c.Value).Count(g => g.Count() == 3) == 1; }
+		}
 	}
 }

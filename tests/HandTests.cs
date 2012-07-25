@@ -8,6 +8,45 @@ namespace poker.tests
 	public class HandTests
 	{
 		[Test]
+		public void can_inspect_hand_for_triples()
+		{
+			var hand = new Hand();
+			hand.HasTriples.ShouldBeFalse();
+
+			hand.Cards.Add(new Card(Suit.Spades, 10));
+			hand.Cards.Add(new Card(Suit.Diamonds, 10));
+
+			hand.HasTriples.ShouldBeFalse();
+
+			hand.Cards.Add(new Card(Suit.Hearts, 10));
+
+			hand.HasTriples.ShouldBeTrue();
+			hand.Cards.Add(new Card(Suit.Clubs, 10));
+
+			hand.HasTriples.ShouldBeFalse();
+
+		}
+		[Test]
+		public void can_inspect_the_number_of_pairs()
+		{
+			var hand = new Hand();
+
+			hand.Cards.Add(new Card(Suit.Spades, 10));
+			hand.Cards.Add(new Card(Suit.Diamonds, 10));
+
+			hand.NumberOfPairs.ShouldEqual(1);
+
+			hand.Cards.Add(new Card(Suit.Diamonds, 3));
+
+			hand.NumberOfPairs.ShouldEqual(1);
+
+			hand.Cards.Add(new Card(Suit.Hearts, 3));
+
+			hand.NumberOfPairs.ShouldEqual(2);
+
+
+		}
+		[Test]
 		public void can_inspect_if_hand_has_all_the_same_suit()
 		{
 			var hand = new Hand();

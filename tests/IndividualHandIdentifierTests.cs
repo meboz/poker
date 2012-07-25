@@ -17,6 +17,8 @@ namespace poker.tests
 		[TestCase("56789SSSSS", typeof(TexasHoldemRoyalFlushIdentifier), false, TexasHoldemHand.StraightFlush)]
 		[TestCase("44447SSSSS", typeof(TexasHoldemFourOfAKindIdentifier), true, TexasHoldemHand.FourOfAKind)]
 		[TestCase("4TTTTDDDDD", typeof(TexasHoldemFourOfAKindIdentifier), true, TexasHoldemHand.FourOfAKind)]
+		[TestCase("4TTTTDDDDS", typeof(TexasHoldemFourOfAKindIdentifier), true, TexasHoldemHand.FourOfAKind)]
+		[TestCase("4TTTTDDDDD", typeof(TexasHoldemFlushIdentifier), false, TexasHoldemHand.FourOfAKind)]
 		[TestCase("44TTTDDDDD", typeof(TexasHoldemFullHouseIdentifier), true, TexasHoldemHand.FullHouse)]
 		[TestCase("444TTDDDDD", typeof(TexasHoldemFullHouseIdentifier), true, TexasHoldemHand.FullHouse)]
 		[TestCase("445TTDDDDD", typeof(TexasHoldemFlushIdentifier), true, TexasHoldemHand.Flush)]
